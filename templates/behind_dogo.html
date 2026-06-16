@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Behind DoGo</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        body{
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef2f3, #dfe9f3);
+            color: #2c3e50;
+        }
+
+        /* HERO SECTION */
+        .hero{
+            text-align: center;
+            padding: 70px 20px 50px;
+        }
+
+        .hero h1{
+            font-size: 42px;
+            margin-bottom: 15px;
+            color: #1f2d3d;
+        }
+
+        .hero p{
+            max-width: 850px;
+            margin: auto;
+            line-height: 1.8;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .highlight{
+            color: #0072ff;
+            font-weight: bold;
+        }
+
+        /* GRID */
+        .section-grid{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 30px 50px 60px;
+        }
+
+        /* GLASS CARD */
+        .glass-card{
+            background: rgba(255,255,255,0.65);
+            backdrop-filter: blur(10px);
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .glass-card:hover{
+            transform: translateY(-6px);
+        }
+
+        .glass-card h3{
+            margin-top: 0;
+            color: #0072ff;
+        }
+
+        .glass-card p{
+            line-height: 1.8;
+            color: #444;
+        }
+
+        /* FLOW SECTION */
+        .workflow{
+            margin-top: 10px;
+            line-height: 2;
+            font-size: 15px;
+        }
+
+        /* FOOTER */
+        .footer{
+            text-align: center;
+            padding: 25px;
+            background: #1f2d3d;
+            color: white;
+            margin-top: 30px;
+        }
+
+        .footer p{
+            margin: 0;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+
+        <div class="logo-small">DO-GO</div>
+
+        <div class="nav-links">
+
+            <a href="/" class="nav-btn">Home</a>
+            
+
+        </div>
+
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+
+        <h1>Behind DoGo 💙</h1>
+
+        <p>
+
+            <span class="highlight">DoGo (Donate & Go)</span>
+            is an intelligent donation management platform designed
+            to connect donors with verified NGOs through a transparent,
+            secure, and real-time tracking system.
+
+            The project aims to simplify donation management while
+            ensuring that donated resources reach the right people
+            efficiently and responsibly.
+
+        </p>
+
+    </div>
+
+    <!-- SECTIONS -->
+    <div class="section-grid">
+
+        <!-- MISSION -->
+        <div class="glass-card">
+
+            <h3>🎯 Our Mission</h3>
+
+            <p>
+
+                Our mission is to reduce wastage of usable food,
+                clothes, and essential items by building a direct
+                bridge between donors and verified NGOs.
+
+                DoGo encourages responsible giving while ensuring
+                transparency, accountability, and real-time donation tracking.
+
+            </p>
+
+        </div>
+
+        <!-- HOW IT WORKS -->
+        <div class="glass-card">
+
+            <h3>⚙️ How DoGo Works</h3>
+
+            <div class="workflow">
+
+                1️⃣ Donor submits donation details<br>
+
+                2️⃣ Donation request gets stored securely<br>
+
+                3️⃣ NGOs access requests through dashboard<br>
+
+                4️⃣ NGO accepts donation request<br>
+
+                5️⃣ Status updates appear in tracking page<br>
+
+                6️⃣ Donation gets completed successfully
+
+            </div>
+
+        </div>
+
+        <!-- SECURITY -->
+        <div class="glass-card">
+
+            <h3>🔐 Security & Verification</h3>
+
+            <p>
+
+                Only registered and verified NGOs are allowed to
+                access donation requests.
+
+                Each NGO provides verification details,
+                NGO ID, contact information, and organization proof
+                before accessing the dashboard.
+
+                This creates a trusted and secure donation environment.
+
+            </p>
+
+        </div>
+
+        <!-- LIVE TRACKING -->
+        <div class="glass-card">
+
+            <h3>📦 Real-Time Tracking</h3>
+
+            <p>
+
+                DoGo provides a live tracking system where donors
+                can monitor the current status of their donations.
+
+                Status automatically updates from
+                <b>Pending → Accepted → Completed</b>
+                based on NGO dashboard actions.
+
+            </p>
+
+        </div>
+
+        <!-- IMPACT -->
+        <div class="glass-card">
+
+            <h3>🌍 Social Impact</h3>
+
+            <p>
+
+                DoGo helps reduce food waste, encourages community support,
+                and ensures that essential resources reach people in need.
+
+                The system promotes sustainable donation practices
+                while increasing trust between donors and NGOs.
+
+            </p>
+
+        </div>
+
+        <!-- WHY DOGO -->
+        <div class="glass-card">
+
+            <h3>🚀 Why Choose DoGo?</h3>
+
+            <p>
+
+                ✔ Simple donation process<br>
+                ✔ Verified NGO system<br>
+                ✔ Real-time donation tracking<br>
+                ✔ Secure management dashboard<br>
+                ✔ Modern user-friendly interface<br>
+                ✔ Transparent donation workflow
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+
+        <p>
+            Built with ❤️ to create a smarter and more transparent donation ecosystem.
+        </p>
+
+    </div>
+
+</body>
+</html>

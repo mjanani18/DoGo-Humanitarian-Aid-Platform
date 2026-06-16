@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Donation History</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            background: #eef2f7;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2{
+            text-align: center;
+            margin-bottom: 30px;
+            color: #1f2d3d;
+        }
+
+        .card{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 18px;
+
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+
+            margin-bottom: 22px;
+
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+
+            align-items: stretch;
+            transition: 0.3s ease;
+        }
+
+        .card:hover{
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+        }
+
+        .box{
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.6;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .donor{
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+        }
+
+        .ngo{
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+        }
+
+        .proof{
+            background: linear-gradient(135deg, #fa709a, #fee140);
+            color: black;
+        }
+
+        .title{
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status{
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <div class="logo-small">DO-GO</div>
+
+    <div class="nav-links">
+
+        <a href="/" class="nav-btn">Home</a>
+
+    </div>
+
+</div>
+
+<h2>Donation History</h2>
+
+<div style="text-align:center; margin-bottom:25px;">
+
+    <input type="text"
+           id="searchInput"
+           placeholder="Search donor / NGO / type..."
+           onkeyup="filterCards()"
+           style="padding:10px; width:260px; border-radius:8px; border:1px solid #ccc;">
+
+    <select id="statusFilter"
+            onchange="filterCards()"
+            style="padding:10px; border-radius:8px; margin-left:10px;">
+
+        <option value="all">All Status</option>
+        <option value="Pending">Pending</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Completed">Completed</option>
+
+    </select>
+
+</div>
+
+{% for row in data %}
+
+<div class="card">
+
+    <!-- DONOR -->
+    <div class="box donor">
+
+        <div class="title">Donor Details</div>
+
+        Name: {{ row[1] }}
+        <br>
+
+        {% set details = row[2].split('\n') %}
+
+        {% for detail in details %}
+
+            {% if "Donation Type" in detail %}
+                {{ detail }} <br>
+            {% endif %}
+
+            {% if "Quantity" in detail %}
+                {{ detail }} <br>
+            {% endif %}
+
+            {% if "Description" in detail %}
+                {{ detail }} <br>
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+    <!-- NGO -->
+    <div class="box ngo">
+
+        <div class="title">NGO Details</div>
+
+        NGO Person Name: {{ row[5] }} <br>
+
+        Organization Name: {{ row[6] }} <br>
+
+        NGO ID: {{ row[7] }} <br>
+
+        Email ID: {{ row[8] }} <br>
+
+        Phone Number: {{ row[9] }} <br>
+
+    </div>
+
+    <!-- PROOF -->
+    <div class="box proof">
+
+        <div class="title">Proof & Status</div>
+
+        Proof:
+        Proof:
+<br>
+
+{% if row[4] %}
+    <a href="{{ row[4] }}" target="_blank">
+        View Proof
+    </a>
+{% else %}
+    Not Uploaded
+{% endif %}
+
+        <div class="status">
+            Status: {{ row[3] }}
+        </div>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+<script>
+
+function filterCards() {
+
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let status = document.getElementById("statusFilter").value.toLowerCase();
+
+    let cards = document.getElementsByClassName("card");
+
+    for (let i = 0; i < cards.length; i++) {
+
+        let text = cards[i].innerText.toLowerCase();
+
+        let matchSearch = text.includes(input);
+        let matchStatus = (status === "all") || text.includes(status);
+
+        if (matchSearch && matchStatus) {
+            cards[i].style.display = "";
+        } else {
+            cards[i].style.display = "none";
+        }
+    }
+}
+
+</script>
+
+</body>
+</html>

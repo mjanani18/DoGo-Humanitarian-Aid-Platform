@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>NGO Registration - DoGo</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        body{
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef2f3, #dfe9f3);
+        }
+
+        /* MAIN WRAPPER */
+        .register-wrapper{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        /* REGISTER CARD */
+        .register-card{
+            width: 520px;
+            background: rgba(255,255,255,0.72);
+            backdrop-filter: blur(10px);
+            border-radius: 22px;
+            padding: 35px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            transition: 0.3s;
+        }
+
+        .register-card:hover{
+            transform: translateY(-5px);
+        }
+
+        /* TITLE */
+        .register-card h2{
+            text-align: center;
+            color: #1f2d3d;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .subtitle{
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        /* LABELS */
+        label{
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 14px;
+        }
+
+        /* INPUTS */
+        input,
+        select{
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            margin-bottom: 18px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        input:focus,
+        select:focus{
+            border-color: #0072ff;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0,114,255,0.2);
+        }
+
+        /* BUTTON */
+        button{
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #0072ff, #0057cc);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover{
+            transform: scale(1.02);
+        }
+
+        /* LOGIN LINK */
+        .login-link{
+            text-align: center;
+            margin-top: 22px;
+            font-size: 15px;
+        }
+
+        .login-link a{
+            color: #0072ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-link a:hover{
+            text-decoration: underline;
+        }
+
+        /* SECTION TITLE */
+        .section-title{
+            margin-top: 15px;
+            margin-bottom: 15px;
+            color: #0072ff;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+
+        <div class="logo-small">DO-GO</div>
+
+        <div class="nav-links">
+
+            <a href="/" class="nav-btn">Home</a>
+            <a href="/donate" class="nav-btn">Donate</a>
+            <a href="/ngo_login" class="nav-btn">NGO Login</a>
+            <a href="/history" class="nav-btn">History</a>
+            <a href="/tracking" class="nav-btn">Tracking</a>
+
+        </div>
+
+    </div>
+
+    <!-- REGISTER AREA -->
+    <div class="register-wrapper">
+
+        <div class="register-card">
+
+            <h2>NGO Registration 🏢</h2>
+
+            <div class="subtitle">
+
+                Register your NGO securely to access
+                donation requests, manage pickups,
+                and help communities efficiently.
+
+            </div>
+
+            <form action="/ngo_register" method="POST">
+
+                <div class="section-title">
+                    Personal Details
+                </div>
+
+                <label>Person Name</label>
+                <input type="text"
+                       name="person_name"
+                       placeholder="Enter Full Name"
+                       required>
+
+                <label>NGO Organization Name</label>
+                <input type="text"
+                       name="ngo_name"
+                       placeholder="Enter NGO Name"
+                       required>
+
+                <label>NGO ID</label>
+                <input type="text"
+                       name="ngo_id"
+                       placeholder="Example: NGO1001"
+                       required>
+
+                <label>Email ID</label>
+                <input type="email"
+                       name="email"
+                       placeholder="Enter Email Address"
+                       required>
+
+                <label>Phone Number</label>
+                <input type="text"
+                       name="phone"
+                       pattern="[0-9]{10}"
+                       placeholder="Enter Phone Number"
+                       required>
+
+                <label>Address</label>
+                <input type="text"
+                       name="address"
+                       placeholder="Enter NGO Address"
+                       required>
+
+                <div class="section-title">
+                    Verification Details
+                </div>
+
+                <label>Verification ID Type</label>
+
+                <select name="verification_type" required>
+
+                    <option value="">
+                        Select Verification Type
+                    </option>
+
+                    <option value="Driving License">
+                        Driving License
+                    </option>
+
+                    <option value="Voter ID">
+                        Voter ID
+                    </option>
+
+                    <option value="NGO ID Card">
+                        NGO ID Card
+                    </option>
+
+                    <option value="Aadhar Card">
+                        Aadhar Card
+                    </option>
+
+                </select>
+
+                <label>Verification ID Number</label>
+
+                <input type="text"
+                       name="verification_number"
+                       placeholder="Enter Verification ID Number"
+                       required>
+
+                <label>Password</label>
+
+                <input type="password"
+                       name="password"
+                       placeholder="Create Password"
+                       required>
+
+                <button type="submit">
+
+                    Register NGO
+
+                </button>
+
+            </form>
+
+            <div class="login-link">
+
+                Already Registered?
+
+                <a href="/ngo_login">
+
+                    Login Here
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

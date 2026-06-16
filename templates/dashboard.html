@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NGO Dashboard - DoGo</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef2f3, #dfe9f3);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* PAGE TITLE */
+        .dashboard-title{
+            text-align: center;
+            margin-top: 30px;
+            color: #1f2d3d;
+            font-size: 32px;
+        }
+
+        /* GRID */
+        .dashboard-grid{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            padding: 30px;
+        }
+
+        /* CARD */
+        .dashboard-card{
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .dashboard-card:hover{
+            transform: translateY(-6px);
+        }
+
+        /* HEADINGS */
+        .dashboard-card h3{
+            margin-top: 0;
+            color: #0072ff;
+        }
+
+        /* DETAILS */
+        .detail{
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .detail span{
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        /* STATUS */
+        .status{
+            font-size: 17px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .pending{
+            color: orange;
+        }
+
+        .accepted{
+            color: #0072ff;
+        }
+
+        .completed{
+            color: green;
+        }
+
+        /* BUTTON AREA */
+        .btn-group{
+            margin-top: 18px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn{
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: white;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .btn:hover{
+            transform: scale(1.05);
+        }
+
+        .accept-btn{
+            background: orange;
+        }
+
+        .complete-btn{
+            background: green;
+        }
+
+        .proof-btn{
+            background: #0072ff;
+        }
+
+        /* INPUT */
+        input[type="text"]{
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+
+        <div class="logo-small">DO-GO</div>
+
+        <div class="nav-links">
+            <a href="/" class="nav-btn">Home</a>
+            
+        </div>
+
+    </div>
+
+    <!-- TITLE -->
+    <h2 class="dashboard-title">
+        NGO Donation Dashboard
+    </h2>
+
+    <!-- DASHBOARD GRID -->
+    <div class="dashboard-grid">
+
+        {% for d in data %}
+
+        <div class="dashboard-card">
+
+            <h3>Donation #{{ d[0] }}</h3>
+
+            <div class="detail">
+                <span>Donor Name:</span><br>
+                {{ d[1] }}
+            </div>
+
+            <div class="detail">
+                <span>Donation Details:</span><br>
+
+                {% set details = d[2].split('|') %}
+
+                {% for detail in details %}
+                    • {{ detail.strip() }}<br>
+                {% endfor %}
+            </div>
+
+            <!-- STATUS -->
+            <div class="status">
+
+                {% if d[3] == "Pending" %}
+                    <span class="pending">Pending</span>
+
+                {% elif d[3] == "Accepted" %}
+                    <span class="accepted">Accepted</span>
+
+                {% elif d[3] == "Completed" %}
+                    <span class="completed">Completed</span>
+
+                {% else %}
+                    {{ d[3] }}
+
+                {% endif %}
+
+            </div>
+
+            <!-- BUTTONS -->
+            <div class="btn-group">
+
+                <a href="/update/{{ d[0] }}/accept">
+                    <button class="btn accept-btn">
+                        Accept
+                    </button>
+                </a>
+
+                <a href="/update/{{ d[0] }}/complete">
+                    <button class="btn complete-btn">
+                        Complete
+                    </button>
+                </a>
+
+            </div>
+
+            <!-- PROOF FORM -->
+            <form action="/add_proof/{{ d[0] }}"
+                  method="POST">
+
+                <input type="text"
+                       name="proof_link"
+                       placeholder="Enter proof / pickup update"
+                       required>
+
+                <button type="submit"
+                        class="btn proof-btn">
+
+                    Submit Proof
+
+                </button>
+
+            </form>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</body>
+</html>

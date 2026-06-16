@@ -1,0 +1,88 @@
+<!DOCTYPE html><html>
+<head>
+    <title>Track Donation - DoGo</title><style>
+
+    body{
+        margin:0;
+        font-family:Arial,sans-serif;
+        background:linear-gradient(135deg,#eef2f3,#dfe9f3);
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        min-height:100vh;
+    }
+
+    .track-card{
+        width:450px;
+        background:rgba(255,255,255,0.75);
+        backdrop-filter:blur(10px);
+        padding:40px;
+        border-radius:22px;
+        text-align:center;
+        box-shadow:0 8px 24px rgba(0,0,0,0.12);
+    }
+
+    h1{
+        color:#0072ff;
+        margin-bottom:15px;
+    }
+
+    p{
+        color:#555;
+        margin-bottom:25px;
+    }
+
+    input{
+        width:90%;
+        padding:14px;
+        border-radius:12px;
+        border:1px solid #ccc;
+        font-size:16px;
+        margin-bottom:20px;
+    }
+
+    button{
+        padding:12px 28px;
+        border:none;
+        border-radius:10px;
+        background:linear-gradient(90deg,#0072ff,#0057cc);
+        color:white;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+    }
+
+    button:hover{
+        transform:scale(1.05);
+    }
+
+</style>
+
+</head><body><div class="track-card">
+
+    <h1>🔍 Track Your Donation</h1>
+
+    <p>
+        Enter the Tracking ID received after donation.
+    </p>
+
+    <form method="POST">
+
+        <input
+            type="number"
+            name="donation_id"
+            placeholder="Enter Tracking ID"
+            required>
+
+        <br>
+
+        <button type="submit">
+            Track Donation
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

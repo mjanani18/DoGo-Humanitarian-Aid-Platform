@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Donation Tracking - DoGo</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        body{
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg,#eef2f3,#dfe9f3);
+        }
+
+        /* TITLE */
+        .track-title{
+            text-align: center;
+            margin-top: 40px;
+            color: #1f2d3d;
+            font-size: 34px;
+        }
+
+        /* MAIN CONTAINER */
+        .track-container{
+            width: 92%;
+            margin: 30px auto;
+        }
+
+        /* CARD */
+        .tracking-card{
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(10px);
+            border-radius: 22px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        /* GRID */
+        .card-grid{
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+            gap: 20px;
+        }
+
+        /* GLASS BOX */
+        .glass-card{
+            background: rgba(255,255,255,0.6);
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+        }
+
+        .glass-card h3{
+            margin-top: 0;
+            color: #0072ff;
+            margin-bottom: 18px;
+        }
+
+        .glass-card p{
+            line-height: 1.8;
+            color: #333;
+            font-size: 15px;
+        }
+
+        .glass-card span{
+            font-weight: bold;
+            color: #1f2d3d;
+        }
+
+        /* STATUS COLORS */
+        .pending{
+            color: orange;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .accepted{
+            color: #0072ff;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .completed{
+            color: green;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+
+        <div class="logo-small">DO-GO</div>
+
+        <div class="nav-links">
+
+            <a href="/" class="nav-btn">Home</a>
+            
+
+        </div>
+
+    </div>
+
+    <h2 class="track-title">
+        📦 Donation Tracking Dashboard
+    </h2>
+
+    <div class="track-container">
+
+        {% for row in data %}
+
+        <div class="tracking-card">
+
+            <div class="card-grid">
+
+                <!-- DONOR -->
+                <div class="glass-card">
+
+                    <h3>👤 Donor Details</h3>
+
+                    <p>
+
+                        {% set lines = row[2].split('\n') %}
+
+                        <span>Name:</span>
+                        {{ row[1] }}
+
+                        <br>
+
+                        <span>Donation Type:</span>
+
+                        {% for line in lines %}
+                            {% if 'Donation Type:' in line %}
+                                {{ line.replace('Donation Type:', '') }}
+                            {% endif %}
+                        {% endfor %}
+
+                        <br>
+
+                        <span>Quantity:</span>
+
+                        {% for line in lines %}
+                            {% if 'Quantity:' in line %}
+                                {{ line.replace('Quantity:', '') }}
+                            {% endif %}
+                        {% endfor %}
+
+                        <br>
+
+                        <span>Pickup Date:</span>
+
+                        {% for line in lines %}
+                            {% if 'Pickup Date:' in line %}
+                                {{ line.replace('Pickup Date:', '') }}
+                            {% endif %}
+                        {% endfor %}
+
+                        <br>
+
+                        <span>Pickup Time:</span>
+
+                        {% for line in lines %}
+                            {% if 'Pickup Time:' in line %}
+                                {{ line.replace('Pickup Time:', '') }}
+                            {% endif %}
+                        {% endfor %}
+
+                    </p>
+
+                </div>
+
+                <!-- NGO -->
+<div class="glass-card">
+
+    <h3>🏢 NGO Details</h3>
+
+    <p>
+
+        <span>NGO Person Name:</span>
+        {{ row[5] if row[5] else 'Not Assigned Yet' }}
+
+        <br>
+
+        <span>Organization Name:</span>
+        {{ row[6] if row[6] else 'Not Assigned Yet' }}
+
+        <br>
+
+        <span>NGO ID:</span>
+        {{ row[7] if row[7] else 'Not Assigned Yet' }}
+
+        <br>
+
+        <span>Email:</span>
+        {{ row[8] if row[8] else 'Not Assigned Yet' }}
+
+        <br>
+
+        <span>Phone:</span>
+        {{ row[9] if row[9] else 'Not Assigned Yet' }}
+
+    </p>
+
+</div>
+
+                <!-- STATUS -->
+                <div class="glass-card">
+
+                    <h3>🚦 Status</h3>
+
+                    <p class="
+                    {% if row[3] == 'Pending' %}
+                        pending
+                    {% elif row[3] == 'Accepted' %}
+                        accepted
+                    {% else %}
+                        completed
+                    {% endif %}
+                    ">
+
+                        {{ row[3] }}
+
+                    </p>
+
+                </div>
+
+                <!-- PROOF -->
+                <div class="glass-card">
+
+                    <h3>📸 Proof</h3>
+
+                    <p>
+
+                        {% if row[4] %}
+    <a href="{{ row[4] }}"
+   target="_blank"
+   style="color:#0072ff; font-weight:bold; text-decoration:none;">
+   View Proof
+</a>
+{% else %}
+    Not Uploaded
+{% endif %}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</body>
+
+</html>

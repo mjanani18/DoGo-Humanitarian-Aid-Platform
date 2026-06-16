@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Donation Success - DoGo</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        body{
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef2f3, #dfe9f3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .success-card{
+            width: 500px;
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 22px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        h1{
+            color: #00a651;
+            margin-bottom: 20px;
+            font-size: 38px;
+        }
+
+        p{
+            color: #444;
+            line-height: 1.9;
+            font-size: 17px;
+        }
+
+        .btn-group{
+            margin-top: 30px;
+        }
+
+        .btn{
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 24px;
+            background: linear-gradient(90deg, #0072ff, #0057cc);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover{
+            transform: scale(1.05);
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="success-card">
+
+        <h1>🎉 Success!</h1>
+
+        <p>
+
+            Your donation has been submitted successfully ❤️
+
+            <br><br>
+
+            Thank you for contributing towards helping communities
+through the DoGo donation platform.
+
+<br><br>
+
+<b>Your Tracking ID:</b> {{ donation_id }}
+
+<br>
+
+Please save this Tracking ID for future tracking.
+
+<br><br>
+
+You can now track your donation status
+through the tracking page.
+        </p>
+
+        <div class="btn-group">
+
+            <a href="/track/{{ donation_id }}" class="btn">
+    Go To Tracking
+</a>
+            <a href="/" class="btn">
+                Back To Home
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

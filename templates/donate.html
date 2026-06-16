@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Donate - DoGo</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        body{
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef2f3, #dfe9f3);
+        }
+
+        /* MAIN WRAPPER */
+        .donate-wrapper{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        /* DONATION CARD */
+        .donation-card{
+            width: 620px;
+            background: rgba(255,255,255,0.72);
+            backdrop-filter: blur(10px);
+            border-radius: 22px;
+            padding: 35px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            transition: 0.3s;
+        }
+
+        .donation-card:hover{
+            transform: translateY(-5px);
+        }
+
+        /* TITLE */
+        .donation-card h2{
+            text-align: center;
+            color: #1f2d3d;
+            margin-bottom: 12px;
+            font-size: 34px;
+        }
+
+        .subtitle{
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        /* WARNING */
+        .warning{
+            background: #ffe5e5;
+            color: #cc0000;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-bottom: 18px;
+            line-height: 1.6;
+        }
+
+        /* NOTE */
+        .note{
+            background: #fff8d6;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        /* SECTION TITLE */
+        .section-title{
+            margin-top: 18px;
+            margin-bottom: 15px;
+            color: #0072ff;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* LABELS */
+        label{
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 14px;
+        }
+
+        /* INPUTS */
+        input,
+        textarea,
+        select{
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            margin-bottom: 18px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus{
+            border-color: #0072ff;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0,114,255,0.2);
+        }
+
+        /* DATE TIME */
+        .date-time{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        /* BUTTON */
+        button{
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #00a651, #008f45);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover{
+            transform: scale(1.02);
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+
+        <div class="logo-small">DO-GO</div>
+
+        <div class="nav-links">
+
+            <a href="/" class="nav-btn">Home</a>
+            
+
+        </div>
+
+    </div>
+
+    <!-- DONATION AREA -->
+    <div class="donate-wrapper">
+
+        <div class="donation-card">
+
+            <h2>Donate Essentials 💚</h2>
+
+            <div class="subtitle">
+
+                Help communities by donating food,
+                clothes, books, and essential items
+                through our transparent NGO donation system.
+
+            </div>
+
+            <!-- WARNING -->
+            <div class="warning">
+
+                Money donations are strictly not accepted.
+                Only essential usable items are allowed.
+
+            </div>
+
+            <!-- NOTE -->
+            <div class="note">
+
+                <b>Allowed Donation Examples:</b><br>
+
+                ✔ Food Items<br>
+                ✔ Clothing<br>
+                ✔ Books & Stationery<br>
+                ✔ Women Essentials<br>
+                ✔ Hygiene Kits<br>
+                ✔ Basic Household Essentials
+
+            </div>
+
+            <form action="/donate" method="POST">
+
+                <!-- DONOR DETAILS -->
+                <div class="section-title">
+                    Donor Details
+                </div>
+
+                <label>Full Name</label>
+                <input type="text"
+                       name="name"
+                       placeholder="Enter Full Name"
+                       required>
+
+                <label>Phone Number</label>
+                <input type="text"
+                       name="phone"
+                       pattern="[0-9]{10}"
+                       placeholder="Enter Phone Number"
+                       required>
+
+                <!-- VERIFICATION -->
+                <div class="section-title">
+                    Verification Details
+                </div>
+
+                <label>Verification ID Type</label>
+
+                <select name="verification_type" required>
+
+                    <option value="">
+                        Select Verification Type
+                    </option>
+
+                    <option value="Aadhar Card">
+                        Aadhar Card
+                    </option>
+
+                    <option value="Driving License">
+                        Driving License
+                    </option>
+
+                    <option value="Voter ID">
+                        Voter ID
+                    </option>
+
+                </select>
+
+                <label>Verification ID Number</label>
+
+                <input type="text"
+                       name="verification_number"
+                       placeholder="Enter Verification ID Number"
+                       required>
+
+                <!-- DONATION DETAILS -->
+                <div class="section-title">
+                    Donation Details
+                </div>
+
+                <label>Donation Type</label>
+
+                <select name="type" required>
+
+                    <option value="Food">Food</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Books">Books</option>
+                    <option value="Stationery">Stationery</option>
+                    <option value="Women Essentials">Women Essentials</option>
+                    <option value="Other Essentials">Other Essentials</option>
+
+                </select>
+
+                <label>Quantity</label>
+
+                <input type="number"
+                       name="quantity"
+                       min="10"
+                       placeholder="Minimum Quantity: 10"
+                       required>
+
+                <label>Pickup Address</label>
+
+                <input type="text"
+                       name="location"
+                       placeholder="Enter Pickup Address"
+                       required>
+
+                <!-- DATE TIME -->
+                <div class="section-title">
+    Preferred Pickup Date & Time
+</div>
+
+<div class="date-time">
+
+    <input type="date"
+           name="date"
+           required>
+
+    <select name="time" required>
+
+        <option value="">
+            Select Preferred Time
+        </option>
+
+        <option value="08:00 AM">08:00 AM</option>
+        <option value="09:00 AM">09:00 AM</option>
+        <option value="10:00 AM">10:00 AM</option>
+        <option value="11:00 AM">11:00 AM</option>
+
+        <option value="12:00 PM">12:00 PM</option>
+
+        <option value="01:00 PM">01:00 PM</option>
+        <option value="02:00 PM">02:00 PM</option>
+        <option value="03:00 PM">03:00 PM</option>
+        <option value="04:00 PM">04:00 PM</option>
+        <option value="05:00 PM">05:00 PM</option>
+        <option value="06:00 PM">06:00 PM</option>
+
+    </select>
+
+</div>
+
+                <label>Description</label>
+
+                <textarea name="description"
+                          rows="4"
+                          placeholder="Enter additional details if any..."></textarea>
+
+                <button type="submit">
+
+                    Submit Donation
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+</html> 
